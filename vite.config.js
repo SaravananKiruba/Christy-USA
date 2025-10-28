@@ -15,11 +15,7 @@ export default defineConfig({
     minify: 'esbuild',
     rollupOptions: {
       output: {
-        manualChunks: {
-          'chakra-ui': ['@chakra-ui/react', '@emotion/react', '@emotion/styled'],
-          'animations': ['framer-motion', 'gsap'],
-          'react-vendor': ['react', 'react-dom', 'react-router-dom']
-        }
+        manualChunks: undefined
       }
     }
   }
