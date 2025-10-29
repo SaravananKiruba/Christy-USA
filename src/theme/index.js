@@ -201,4 +201,231 @@ const theme = extendTheme({
   },
 });
 
+// Template definitions
+export const TEMPLATES = {
+  PROFESSIONAL: 'professional',
+  CREATIVE: 'creative',
+  FUTURISTIC: 'futuristic',
+};
+
+// Template-specific design configurations
+export const templateDesigns = {
+  professional: {
+    name: 'Professional',
+    description: 'Clean & Corporate',
+    animations: {
+      speed: 'normal',
+      intensity: 'subtle',
+      cardHover: 'translateY(-8px)',
+      buttonHover: 'translateY(-2px)',
+      transition: 'all 0.3s ease',
+    },
+    layout: {
+      cardRadius: 'xl',
+      cardPadding: 6,
+      sectionSpacing: 20,
+      borderStyle: 'solid',
+    },
+    effects: {
+      blur: false,
+      glow: false,
+      gradient: false,
+      particles: true,
+    },
+  },
+  creative: {
+    name: 'Creative',
+    description: 'Bold & Artistic',
+    animations: {
+      speed: 'fast',
+      intensity: 'bold',
+      cardHover: 'translateY(-12px) rotate(2deg)',
+      buttonHover: 'translateY(-4px) scale(1.05)',
+      transition: 'all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+    },
+    layout: {
+      cardRadius: '2xl',
+      cardPadding: 8,
+      sectionSpacing: 24,
+      borderStyle: 'dashed',
+    },
+    effects: {
+      blur: true,
+      glow: true,
+      gradient: true,
+      particles: true,
+    },
+  },
+  futuristic: {
+    name: 'Futuristic',
+    description: 'Modern & Tech',
+    animations: {
+      speed: 'slow',
+      intensity: 'smooth',
+      cardHover: 'translateY(-6px) scale(1.02)',
+      buttonHover: 'translateX(4px)',
+      transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+    },
+    layout: {
+      cardRadius: 'none',
+      cardPadding: 6,
+      sectionSpacing: 16,
+      borderStyle: 'solid',
+    },
+    effects: {
+      blur: true,
+      glow: true,
+      gradient: false,
+      particles: false,
+    },
+  },
+};
+
+// Professional Blue Theme Colors
+const professionalColors = {
+  ...colors,
+};
+
+// Creative Theme Colors (Purple/Pink Gradient)
+const creativeColors = {
+  ...colors,
+  primary: {
+    50: '#FAF5FF',
+    100: '#E9D8FD',
+    200: '#D6BCFA',
+    300: '#B794F6',
+    400: '#9F7AEA',
+    500: '#805AD5',
+    600: '#6B46C1',
+    700: '#553C9A',
+    800: '#44337A',
+    900: '#322659',
+  },
+  secondary: {
+    50: '#FFF5F7',
+    100: '#FED7E2',
+    200: '#FBB6CE',
+    300: '#F687B3',
+    400: '#ED64A6',
+    500: '#D53F8C',
+    600: '#B83280',
+    700: '#97266D',
+    800: '#702459',
+    900: '#521B41',
+  },
+  accent: {
+    50: '#E6FFFA',
+    100: '#B2F5EA',
+    200: '#81E6D9',
+    300: '#4FD1C5',
+    400: '#38B2AC',
+    500: '#319795',
+    600: '#2C7A7B',
+    700: '#285E61',
+    800: '#234E52',
+    900: '#1D4044',
+  },
+  dark: {
+    bg: 'linear-gradient(135deg, #1a0b2e 0%, #2d1b4e 100%)',
+    surface: 'rgba(88, 28, 135, 0.4)',
+    card: 'rgba(109, 40, 217, 0.2)',
+    border: 'rgba(167, 139, 250, 0.3)',
+    text: '#F3E8FF',
+    textSecondary: '#C4B5FD',
+  },
+};
+
+// Futuristic Theme Colors (Minimal Tech)
+const futuristicColors = {
+  ...colors,
+  primary: {
+    50: '#F0F4F8',
+    100: '#D9E2EC',
+    200: '#BCCCDC',
+    300: '#9FB3C8',
+    400: '#829AB1',
+    500: '#627D98',
+    600: '#486581',
+    700: '#334E68',
+    800: '#243B53',
+    900: '#102A43',
+  },
+  secondary: {
+    50: '#F0F4F8',
+    100: '#D9E2EC',
+    200: '#BCCCDC',
+    300: '#9FB3C8',
+    400: '#829AB1',
+    500: '#627D98',
+    600: '#486581',
+    700: '#334E68',
+    800: '#243B53',
+    900: '#102A43',
+  },
+  accent: {
+    50: '#E3F8FF',
+    100: '#B3ECFF',
+    200: '#81DEFD',
+    300: '#5ED0FA',
+    400: '#40C3F7',
+    500: '#2BB0ED',
+    600: '#1992D4',
+    700: '#127FBF',
+    800: '#0B69A3',
+    900: '#035388',
+  },
+  dark: {
+    bg: '#0D0D0D',
+    surface: '#1A1A1A',
+    card: '#262626',
+    border: '#333333',
+    text: '#F5F5F5',
+    textSecondary: '#A3A3A3',
+  },
+};
+
+// Create Professional theme
+const professionalTheme = extendTheme({
+  ...theme,
+  colors: professionalColors,
+  ...templateDesigns.professional,
+});
+
+// Create Creative theme  
+const creativeTheme = extendTheme({
+  ...theme,
+  colors: creativeColors,
+  shadows: {
+    ...shadows,
+    glowPurple: '0 0 25px rgba(128, 90, 213, 0.5)',
+    glowTeal: '0 0 20px rgba(49, 151, 149, 0.5)',
+  },
+  ...templateDesigns.creative,
+});
+
+// Create Futuristic theme
+const futuristicTheme = extendTheme({
+  ...theme,
+  colors: futuristicColors,
+  shadows: {
+    ...shadows,
+    glow: '0 0 15px rgba(98, 125, 152, 0.3)',
+    neon: '0 0 10px rgba(43, 176, 237, 0.6), 0 0 20px rgba(43, 176, 237, 0.4)',
+  },
+  ...templateDesigns.futuristic,
+});
+
+// Function to get theme by template name
+export const getThemeByTemplate = (template) => {
+  switch (template) {
+    case TEMPLATES.CREATIVE:
+      return creativeTheme;
+    case TEMPLATES.FUTURISTIC:
+      return futuristicTheme;
+    case TEMPLATES.PROFESSIONAL:
+    default:
+      return professionalTheme;
+  }
+};
+
 export default theme;

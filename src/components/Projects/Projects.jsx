@@ -27,6 +27,7 @@ import { useInView } from 'react-intersection-observer';
 import { FaRocket, FaExternalLinkAlt, FaCheckCircle } from 'react-icons/fa';
 import { projects } from '../../data/portfolioData';
 import { useState } from 'react';
+import { useTemplateDesign } from '../../hooks/useTemplateDesign';
 
 const MotionBox = motion(Box);
 
@@ -36,6 +37,7 @@ const ProjectCard = ({ project, delay, onOpen }) => {
     triggerOnce: true,
   });
 
+  const design = useTemplateDesign();
   const bg = useColorModeValue('white', 'dark.surface');
   const borderColor = useColorModeValue('gray.200', 'dark.border');
   const textColor = useColorModeValue('gray.600', 'dark.textSecondary');
@@ -46,28 +48,51 @@ const ProjectCard = ({ project, delay, onOpen }) => {
     'Completed': 'purple',
   };
 
+  // Different animations based on template
+  const getInitialState = () => {
+    switch (design.template) {
+      case 'creative':
+        return { opacity: 0, scale: 0.8, rotate: -5 };
+      case 'futuristic':
+        return { opacity: 0, x: 100 };
+      default:
+        return { opacity: 0, y: 50 };
+    }
+  };
+
+  const getAnimateState = () => {
+    switch (design.template) {
+      case 'creative':
+        return { opacity: 1, scale: 1, rotate: 0 };
+      case 'futuristic':
+        return { opacity: 1, x: 0 };
+      default:
+        return { opacity: 1, y: 0 };
+    }
+  };
+
   return (
     <MotionBox
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      initial={getInitialState()}
+      animate={inView ? getAnimateState() : getInitialState()}
       transition={{ duration: 0.6, delay }}
     >
       <Box
         bg={bg}
-        borderRadius="xl"
-        border="1px solid"
+        borderRadius={design.layout.cardRadius}
+        border={design.layout.borderStyle === 'dashed' ? '2px dashed' : '1px solid'}
         borderColor={borderColor}
         overflow="hidden"
         h="full"
         display="flex"
         flexDirection="column"
         _hover={{
-          transform: 'translateY(-8px)',
-          boxShadow: '2xl',
+          transform: design.animations.cardHover,
+          boxShadow: design.effects.glow ? 'glowPurple' : '2xl',
           borderColor: 'primary.500',
         }}
-        transition="all 0.3s ease"
+        transition={design.animations.transition}
         cursor="pointer"
         onClick={onOpen}
       >

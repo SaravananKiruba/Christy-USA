@@ -10,11 +10,17 @@ import {
   Stack,
   Container,
   Link as ChakraLink,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Text,
 } from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
+import { useThemeTemplate } from '../../context/ThemeContext';
 
 const MotionBox = motion(Box);
 
@@ -73,11 +79,18 @@ const NavLink = ({ children, to }) => {
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode, toggleColorMode} = useColorMode();
+  const { currentTemplate, changeTemplate, templates } = useThemeTemplate();
   const [scrolled, setScrolled] = useState(false);
   
   const bg = useColorModeValue('rgba(255, 255, 255, 0.8)', 'rgba(10, 14, 39, 0.8)');
   const borderColor = useColorModeValue('gray.200', 'dark.border');
+
+  const templateNames = {
+    [templates.PROFESSIONAL]: 'Professional',
+    [templates.CREATIVE]: 'Creative',
+    [templates.FUTURISTIC]: 'Futuristic',
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -131,6 +144,57 @@ export default function Navbar() {
 
           {/* Right Side Actions */}
           <HStack spacing={3}>
+            {/* Template Selector */}
+            <Menu>
+              <MenuButton
+                as={Button}
+                rightIcon={<ChevronDownIcon />}
+                size="sm"
+                variant="ghost"
+                display={{ base: 'none', md: 'inline-flex' }}
+              >
+                <Text fontSize="sm">{templateNames[currentTemplate]}</Text>
+              </MenuButton>
+              <MenuList>
+                <MenuItem
+                  onClick={() => changeTemplate(templates.PROFESSIONAL)}
+                  bg={currentTemplate === templates.PROFESSIONAL ? 'primary.50' : 'transparent'}
+                  _dark={{
+                    bg: currentTemplate === templates.PROFESSIONAL ? 'primary.900' : 'transparent'
+                  }}
+                >
+                  <Box>
+                    <Text fontWeight="600">Professional</Text>
+                    <Text fontSize="xs" color="gray.500">Clean & Corporate</Text>
+                  </Box>
+                </MenuItem>
+                <MenuItem
+                  onClick={() => changeTemplate(templates.CREATIVE)}
+                  bg={currentTemplate === templates.CREATIVE ? 'primary.50' : 'transparent'}
+                  _dark={{
+                    bg: currentTemplate === templates.CREATIVE ? 'primary.900' : 'transparent'
+                  }}
+                >
+                  <Box>
+                    <Text fontWeight="600">Creative</Text>
+                    <Text fontSize="xs" color="gray.500">Bold & Artistic</Text>
+                  </Box>
+                </MenuItem>
+                <MenuItem
+                  onClick={() => changeTemplate(templates.FUTURISTIC)}
+                  bg={currentTemplate === templates.FUTURISTIC ? 'primary.50' : 'transparent'}
+                  _dark={{
+                    bg: currentTemplate === templates.FUTURISTIC ? 'primary.900' : 'transparent'
+                  }}
+                >
+                  <Box>
+                    <Text fontWeight="600">Futuristic</Text>
+                    <Text fontSize="xs" color="gray.500">Modern & Tech</Text>
+                  </Box>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+
             <IconButton
               size="md"
               icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
@@ -200,6 +264,43 @@ export default function Navbar() {
                   </ChakraLink>
                 </ScrollLink>
               ))}
+              
+              {/* Mobile Template Selector */}
+              <Box px={3} py={2}>
+                <Text fontSize="xs" fontWeight="600" mb={2} color="gray.500">
+                  Choose Template
+                </Text>
+                <Stack spacing={2}>
+                  <Button
+                    size="sm"
+                    variant={currentTemplate === templates.PROFESSIONAL ? 'solid' : 'ghost'}
+                    colorScheme={currentTemplate === templates.PROFESSIONAL ? 'primary' : 'gray'}
+                    onClick={() => changeTemplate(templates.PROFESSIONAL)}
+                    justifyContent="flex-start"
+                  >
+                    Professional
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant={currentTemplate === templates.CREATIVE ? 'solid' : 'ghost'}
+                    colorScheme={currentTemplate === templates.CREATIVE ? 'primary' : 'gray'}
+                    onClick={() => changeTemplate(templates.CREATIVE)}
+                    justifyContent="flex-start"
+                  >
+                    Creative
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant={currentTemplate === templates.FUTURISTIC ? 'solid' : 'ghost'}
+                    colorScheme={currentTemplate === templates.FUTURISTIC ? 'primary' : 'gray'}
+                    onClick={() => changeTemplate(templates.FUTURISTIC)}
+                    justifyContent="flex-start"
+                  >
+                    Futuristic
+                  </Button>
+                </Stack>
+              </Box>
+
               <ScrollLink to="contact" smooth={true} duration={500} onClick={onToggle}>
                 <Button variant="primary" w="full" size="sm">
                   Get In Touch

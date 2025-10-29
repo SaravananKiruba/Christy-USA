@@ -8,18 +8,21 @@ import Education from './components/Education/Education';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 import ScrollToTop from './components/common/ScrollToTop';
+import { TemplateLayout } from './components/common/TemplateLayout';
 
 function App() {
   return (
     <Box>
       <Navbar />
-      <Hero />
-      <About />
-      <Experience />
-      <Skills />
-      <Education />
-      <Contact />
-      <Footer />
+      <TemplateLayout>
+        <Hero />
+        <About />
+        <Experience />
+        <Skills />
+        <Education />
+        <Contact />
+        <Footer />
+      </TemplateLayout>
       <ScrollToTop />
     </Box>
   );

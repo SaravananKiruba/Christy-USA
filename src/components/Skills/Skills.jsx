@@ -34,6 +34,7 @@ import {
   FaAws,
 } from 'react-icons/fa';
 import { skills } from '../../data/portfolioData';
+import { useTemplateDesign } from '../../hooks/useTemplateDesign';
 
 const MotionBox = motion(Box);
 
@@ -68,36 +69,64 @@ const SkillCard = ({ skill, delay }) => {
     triggerOnce: true,
   });
 
+  const design = useTemplateDesign();
   const bg = useColorModeValue('white', 'dark.surface');
   const borderColor = useColorModeValue('gray.200', 'dark.border');
   const textColor = useColorModeValue('gray.600', 'dark.textSecondary');
 
   const IconComponent = iconMap[skill.icon] || FaCode;
 
+  // Different animations based on template
+  const getInitialState = () => {
+    switch (design.template) {
+      case 'creative':
+        return { opacity: 0, scale: 0.5, rotate: -10 };
+      case 'futuristic':
+        return { opacity: 0, x: -50 };
+      default:
+        return { opacity: 0, scale: 0.8 };
+    }
+  };
+
+  const getAnimateState = () => {
+    switch (design.template) {
+      case 'creative':
+        return { opacity: 1, scale: 1, rotate: 0 };
+      case 'futuristic':
+        return { opacity: 1, x: 0 };
+      default:
+        return { opacity: 1, scale: 1 };
+    }
+  };
+
   return (
     <MotionBox
       ref={ref}
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+      initial={getInitialState()}
+      animate={inView ? getAnimateState() : getInitialState()}
       transition={{ duration: 0.5, delay }}
-      whileHover={{ y: -8 }}
+      whileHover={{ 
+        y: design.animations.cardHover.includes('translateY') ? -8 : 0,
+        rotate: design.animations.cardHover.includes('rotate') ? 2 : 0,
+        scale: design.animations.cardHover.includes('scale') ? 1.02 : 1,
+      }}
     >
       <VStack
-        p={6}
+        p={design.layout.cardPadding}
         bg={bg}
-        borderRadius="xl"
-        border="1px solid"
+        borderRadius={design.layout.cardRadius}
+        border={design.layout.borderStyle === 'dashed' ? '2px dashed' : '1px solid'}
         borderColor={borderColor}
         spacing={4}
         h="full"
         position="relative"
         overflow="hidden"
         _hover={{
-          boxShadow: 'xl',
+          boxShadow: design.effects.glow ? 'glowPurple' : 'xl',
           borderColor: 'primary.500',
         }}
-        transition="all 0.3s ease"
-        _before={{
+        transition={design.animations.transition}
+        _before={design.effects.gradient ? {
           content: '""',
           position: 'absolute',
           top: 0,
@@ -108,7 +137,7 @@ const SkillCard = ({ skill, delay }) => {
           transform: 'scaleX(0)',
           transformOrigin: 'left',
           transition: 'transform 0.3s ease',
-        }}
+        } : {}}
         sx={{
           '&:hover::before': {
             transform: 'scaleX(1)',
