@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
     
     <!-- Google Fonts for Themes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,7 +32,28 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/Christy-USA/assets/index-Cf2-i1dG.js"></script>
+    
+    <style>
+      /* Prevent FOUC (Flash of Unstyled Content) */
+      html, body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+      }
+      
+      /* Ensure fonts load properly */
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      /* Prevent color flashing on load */
+      #root {
+        min-height: 100vh;
+      }
+    </style>
+    <script type="module" crossorigin src="/Christy-USA/assets/index-CwYAIp_T.js"></script>
   </head>
   <body>
     <div id="root"></div>
