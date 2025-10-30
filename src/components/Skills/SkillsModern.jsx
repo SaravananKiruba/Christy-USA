@@ -14,7 +14,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import {
   FaBrain,
-  FaSparkles,
+  FaStar,
   FaRobot,
   FaShieldAlt,
   FaCode,
@@ -22,7 +22,6 @@ import {
   FaNetworkWired,
   FaEye,
   FaComments,
-  FaArrowTrendUp,
   FaCloud,
   FaServer,
   FaDatabase,
@@ -35,6 +34,7 @@ import {
   FaVideo,
   FaChartBar,
 } from 'react-icons/fa';
+import { BiTrendingUp } from 'react-icons/bi';
 import { SiR } from 'react-icons/si';
 import { skills } from '../../data/portfolioData';
 
@@ -43,7 +43,7 @@ const MotionBox = motion(Box);
 // Icon mapping
 const iconMap = {
   brain: FaBrain,
-  sparkles: FaSparkles,
+  sparkles: FaStar,
   robot: FaRobot,
   shield: FaShieldAlt,
   code: FaCode,
@@ -51,7 +51,7 @@ const iconMap = {
   network: FaNetworkWired,
   eye: FaEye,
   message: FaComments,
-  trending: FaArrowTrendUp,
+  trending: BiTrendingUp,
   cloud: FaCloud,
   server: FaServer,
   database: FaDatabase,
