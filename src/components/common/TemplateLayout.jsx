@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
-import { useTemplateDesign } from '../hooks/useTemplateDesign';
+import { useTemplateDesign } from '../../hooks/useTemplateDesign';
 
 // Professional Layout - Traditional centered sections
 export const ProfessionalLayout = ({ children }) => {

@@ -9,10 +9,12 @@ import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 import ScrollToTop from './components/common/ScrollToTop';
 import { TemplateLayout } from './components/common/TemplateLayout';
+import TemplateSwitcher from './components/TemplateSwitcher/TemplateSwitcher';
 
 function App() {
   return (
     <Box>
+      <TemplateSwitcher />
       <Navbar />
       <TemplateLayout>
         <Hero />
