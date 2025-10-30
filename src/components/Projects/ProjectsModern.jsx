@@ -54,7 +54,7 @@ const ProjectCard = ({ project, index }) => {
         transition="all 0.4s ease"
       >
         {/* Project Image */}
-        <Box position="relative" overflow="hidden" height="200px">
+        <Box position="relative" overflow="hidden" height={{ base: '150px', md: '200px' }}>
           <Image
             src={project.image}
             alt={project.title}
@@ -74,10 +74,10 @@ const ProjectCard = ({ project, index }) => {
           />
           <Badge
             position="absolute"
-            top={4}
-            right={4}
+            top={{ base: 2, md: 4 }}
+            right={{ base: 2, md: 4 }}
             colorScheme={statusColors[project.status]}
-            fontSize="xs"
+            fontSize={{ base: '2xs', md: 'xs' }}
             px={3}
             py={1}
             borderRadius="full"
@@ -87,21 +87,21 @@ const ProjectCard = ({ project, index }) => {
         </Box>
 
         {/* Project Content */}
-        <VStack align="start" spacing={4} p={6} flex={1}>
+        <VStack align="start" spacing={{ base: 3, md: 4 }} p={{ base: 4, md: 6 }} flex={1}>
           <VStack align="start" spacing={2} width="100%">
-            <Badge colorScheme="blue" fontSize="xs">
+            <Badge colorScheme="blue" fontSize={{ base: '2xs', md: 'xs' }}>
               {project.category}
             </Badge>
-            <Heading as="h3" size="md" color="gray.800">
+            <Heading as="h3" fontSize={{ base: 'md', md: 'lg' }} color="gray.800">
               {project.title}
             </Heading>
-            <HStack color="gray.500" fontSize="sm">
+            <HStack color="gray.500" fontSize={{ base: 'xs', md: 'sm' }}>
               <Icon as={FaClock} />
               <Text>{project.timeline}</Text>
             </HStack>
           </VStack>
 
-          <Text color="gray.600" fontSize="sm" noOfLines={3}>
+          <Text color="gray.600" fontSize={{ base: 'xs', md: 'sm' }} noOfLines={3}>
             {project.description}
           </Text>
 
@@ -112,7 +112,7 @@ const ProjectCard = ({ project, index }) => {
                 <Badge
                   variant="outline"
                   colorScheme="gray"
-                  fontSize="xs"
+                  fontSize={{ base: '2xs', md: 'xs' }}
                   px={2}
                   py={1}
                 >
@@ -125,7 +125,7 @@ const ProjectCard = ({ project, index }) => {
                 <Badge
                   variant="outline"
                   colorScheme="gray"
-                  fontSize="xs"
+                  fontSize={{ base: '2xs', md: 'xs' }}
                   px={2}
                   py={1}
                 >
@@ -163,8 +163,8 @@ const ProjectsModern = () => {
   });
 
   return (
-    <Box bg="white" py={20} id="projects">
-      <Container maxW="container.xl">
+    <Box bg="white" py={{ base: 12, md: 16, lg: 20 }} id="projects">
+      <Container maxW="container.xl" px={{ base: 4, md: 6, lg: 8 }}>
         <MotionBox
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
@@ -175,19 +175,19 @@ const ProjectsModern = () => {
         >
           <Heading
             as="h2"
-            size="2xl"
+            fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }}
             mb={4}
             bgGradient="linear(to-r, brand.500, brand.600)"
             bgClip="text"
           >
             Featured Projects
           </Heading>
-          <Text fontSize="lg" color="gray.600" maxW="2xl" mx="auto">
+          <Text fontSize={{ base: 'md', md: 'lg' }} color="gray.600" maxW="2xl" mx="auto">
             Innovative AI solutions driving business transformation and operational excellence
           </Text>
         </MotionBox>
 
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8}>
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={{ base: 6, md: 8 }}>
           {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}

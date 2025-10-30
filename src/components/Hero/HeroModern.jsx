@@ -45,9 +45,9 @@ const HeroModern = () => {
         pointerEvents="none"
       />
 
-      <Container maxW="container.lg" position="relative">
+      <Container maxW="container.lg" position="relative" px={{ base: 4, md: 6, lg: 8 }}>
         <MotionVStack
-          spacing={8}
+          spacing={{ base: 6, md: 8 }}
           align="center"
           textAlign="center"
           initial={{ opacity: 0, y: 30 }}
@@ -61,7 +61,7 @@ const HeroModern = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <Avatar
-              size="2xl"
+              size={{ base: 'xl', md: '2xl' }}
               name={personalInfo.name}
               bg="brand.500"
               color="white"
@@ -79,7 +79,7 @@ const HeroModern = () => {
           >
             <Heading
               as="h1"
-              size="2xl"
+              fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
               fontWeight="bold"
               color="gray.800"
               letterSpacing="-0.02em"
@@ -96,10 +96,10 @@ const HeroModern = () => {
           >
             <Heading
               as="h2"
-              size="lg"
+              fontSize={{ base: 'lg', md: 'xl', lg: '2xl' }}
               fontWeight="medium"
               color="brand.500"
-              minH="40px"
+              minH={{ base: '30px', md: '40px' }}
             >
               <TypeAnimation
                 sequence={[
@@ -122,9 +122,10 @@ const HeroModern = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            maxW="600px"
+            maxW={{ base: '90%', md: '600px' }}
+            px={{ base: 4, md: 0 }}
           >
-            <Text fontSize="lg" color="gray.600" lineHeight="tall">
+            <Text fontSize={{ base: 'md', md: 'lg' }} color="gray.600" lineHeight="tall">
               {personalInfo.tagline}
             </Text>
           </MotionBox>
@@ -135,7 +136,7 @@ const HeroModern = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1 }}
           >
-            <HStack spacing={4}>
+            <HStack spacing={{ base: 2, md: 4 }} flexWrap="wrap" justify="center">
               <Button
                 as="a"
                 href={personalInfo.linkedin}
@@ -143,7 +144,7 @@ const HeroModern = () => {
                 leftIcon={<FaLinkedin />}
                 variant="ghost"
                 colorScheme="brand"
-                size="lg"
+                size={{ base: 'sm', md: 'md', lg: 'lg' }}
               >
                 LinkedIn
               </Button>
@@ -154,7 +155,7 @@ const HeroModern = () => {
                 leftIcon={<FaGithub />}
                 variant="ghost"
                 colorScheme="gray"
-                size="lg"
+                size={{ base: 'sm', md: 'md', lg: 'lg' }}
               >
                 GitHub
               </Button>
@@ -164,7 +165,7 @@ const HeroModern = () => {
                 leftIcon={<FaEnvelope />}
                 variant="ghost"
                 colorScheme="brand"
-                size="lg"
+                size={{ base: 'sm', md: 'md', lg: 'lg' }}
               >
                 Email
               </Button>
@@ -177,15 +178,15 @@ const HeroModern = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.2 }}
           >
-            <HStack spacing={4}>
+            <HStack spacing={{ base: 3, md: 4 }} flexWrap="wrap" justify="center">
               <ScrollLink to="about" smooth={true} duration={500}>
-                <Button size="lg" colorScheme="brand">
+                <Button size={{ base: 'md', md: 'lg' }} colorScheme="brand">
                   About Me
                 </Button>
               </ScrollLink>
               <Button
                 variant="outline"
-                size="lg"
+                size={{ base: 'md', md: 'lg' }}
                 colorScheme="brand"
                 leftIcon={<FaDownload />}
               >
@@ -200,7 +201,8 @@ const HeroModern = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.4 }}
             position="absolute"
-            bottom={8}
+            bottom={{ base: 4, md: 8 }}
+            display={{ base: 'none', md: 'block' }}
           >
             <VStack spacing={2}>
               <Text fontSize="sm" color="gray.400" letterSpacing="wider">

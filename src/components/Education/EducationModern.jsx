@@ -32,12 +32,12 @@ const EducationCard = ({ edu, index }) => {
       transition={{ duration: 0.6, delay: index * 0.2 }}
       position="relative"
     >
-      <HStack align="start" spacing={6}>
+      <HStack align="start" spacing={{ base: 3, md: 6 }} flexWrap={{ base: 'wrap', md: 'nowrap' }}>
         {/* Timeline dot and line */}
-        <VStack spacing={0} position="relative">
+        <VStack spacing={0} position="relative" display={{ base: 'none', md: 'flex' }}>
           <Box
-            width="40px"
-            height="40px"
+            width={{ base: '30px', md: '40px' }}
+            height={{ base: '30px', md: '40px' }}
             borderRadius="full"
             bg="brand.500"
             display="flex"
@@ -48,7 +48,7 @@ const EducationCard = ({ edu, index }) => {
             position="relative"
             zIndex={2}
           >
-            <Icon as={FaGraduationCap} color="white" boxSize={5} />
+            <Icon as={FaGraduationCap} color="white" boxSize={{ base: 4, md: 5 }} />
           </Box>
           {index < education.length - 1 && (
             <Box
@@ -68,30 +68,31 @@ const EducationCard = ({ edu, index }) => {
         <MotionBox
           flex={1}
           bg="white"
-          p={6}
+          p={{ base: 4, md: 6 }}
           borderRadius="lg"
           boxShadow="md"
-          mb={8}
+          mb={{ base: 6, md: 8 }}
           _hover={{
             boxShadow: 'xl',
             transform: 'translateY(-4px)',
           }}
           transition="all 0.3s ease"
+          width={{ base: '100%', md: 'auto' }}
         >
-          <HStack justify="space-between" mb={4} flexWrap="wrap">
+          <HStack justify="space-between" mb={4} flexWrap="wrap" gap={{ base: 2, md: 0 }}>
             <VStack align="start" spacing={1} flex={1}>
-              <Heading as="h3" size="md" color="gray.800">
+              <Heading as="h3" fontSize={{ base: 'md', md: 'lg' }} color="gray.800">
                 {edu.degree}
               </Heading>
-              <Text fontSize="lg" fontWeight="600" color="brand.500">
+              <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight="600" color="brand.500">
                 {edu.field}
               </Text>
             </VStack>
             {edu.grade && (
               <Badge
                 colorScheme="blue"
-                fontSize="sm"
-                px={3}
+                fontSize={{ base: 'xs', md: 'sm' }}
+                px={{ base: 2, md: 3 }}
                 py={1}
                 borderRadius="full"
                 display="flex"
@@ -159,8 +160,8 @@ const EducationModern = () => {
   });
 
   return (
-    <Box bg="gray.50" py={20} id="education">
-      <Container maxW="container.xl">
+    <Box bg="gray.50" py={{ base: 12, md: 16, lg: 20 }} id="education">
+      <Container maxW="container.xl" px={{ base: 4, md: 6, lg: 8 }}>
         <MotionBox
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
@@ -171,14 +172,14 @@ const EducationModern = () => {
         >
           <Heading
             as="h2"
-            size="2xl"
+            fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }}
             mb={4}
             bgGradient="linear(to-r, brand.500, brand.600)"
             bgClip="text"
           >
             Academic Background
           </Heading>
-          <Text fontSize="lg" color="gray.600" maxW="2xl" mx="auto">
+          <Text fontSize={{ base: 'md', md: 'lg' }} color="gray.600" maxW="2xl" mx="auto">
             A strong foundation in statistics, research, and data science
           </Text>
         </MotionBox>

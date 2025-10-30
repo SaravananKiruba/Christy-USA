@@ -31,7 +31,7 @@ const StatCard = ({ stat, delay, icon }) => {
       transition={{ duration: 0.6, delay }}
     >
       <VStack
-        p={8}
+        p={{ base: 6, md: 8 }}
         bg="white"
         borderRadius="xl"
         border="1px solid"
@@ -46,9 +46,9 @@ const StatCard = ({ stat, delay, icon }) => {
         }}
         transition="all 0.3s ease"
       >
-        <Icon as={icon} boxSize={8} color="brand.500" />
+        <Icon as={icon} boxSize={{ base: 6, md: 8 }} color="brand.500" />
         <HStack spacing={1} align="baseline">
-          <Text fontSize="4xl" fontWeight="bold" color="gray.800">
+          <Text fontSize={{ base: '3xl', md: '4xl' }} fontWeight="bold" color="gray.800">
             {inView && (
               <CountUp
                 end={typeof stat.value === 'number' ? stat.value : parseInt(stat.value)}
@@ -57,14 +57,14 @@ const StatCard = ({ stat, delay, icon }) => {
               />
             )}
           </Text>
-          <Text fontSize="2xl" fontWeight="bold" color="brand.500">
+          <Text fontSize={{ base: 'xl', md: '2xl' }} fontWeight="bold" color="brand.500">
             {stat.suffix}
           </Text>
         </HStack>
-        <Text fontSize="lg" fontWeight="semibold" color="gray.700">
+        <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight="semibold" color="gray.700">
           {stat.label}
         </Text>
-        <Text fontSize="sm" color="gray.500">
+        <Text fontSize={{ base: 'xs', md: 'sm' }} color="gray.500">
           {stat.description}
         </Text>
       </VStack>
@@ -86,9 +86,9 @@ const AboutModern = () => {
   const iconMap = [FaTrophy, FaBriefcase, FaChartLine, FaDollarSign, FaBriefcase];
 
   return (
-    <Box as="section" id="about" py={20} bg="gray.50">
-      <Container maxW="container.xl">
-        <VStack spacing={16} align="stretch">
+    <Box as="section" id="about" py={{ base: 12, md: 16, lg: 20 }} bg="gray.50">
+      <Container maxW="container.xl" px={{ base: 4, md: 6, lg: 8 }}>
+        <VStack spacing={{ base: 12, md: 16 }} align="stretch">
           {/* Section Title */}
           <MotionBox
             ref={titleRef}
@@ -98,7 +98,7 @@ const AboutModern = () => {
             textAlign="center"
           >
             <Text
-              fontSize="sm"
+              fontSize={{ base: 'xs', md: 'sm' }}
               fontWeight="semibold"
               color="brand.500"
               textTransform="uppercase"
@@ -107,10 +107,10 @@ const AboutModern = () => {
             >
               About Me
             </Text>
-            <Heading as="h2" size="2xl" color="gray.800" mb={4}>
+            <Heading as="h2" fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }} color="gray.800" mb={4}>
               Professional Journey
             </Heading>
-            <Text fontSize="lg" color="gray.600" maxW="2xl" mx="auto">
+            <Text fontSize={{ base: 'md', md: 'lg' }} color="gray.600" maxW="2xl" mx="auto">
               Transforming data into insights and leading innovation in AI
             </Text>
           </MotionBox>
@@ -124,20 +124,20 @@ const AboutModern = () => {
           >
             <Box
               bg="white"
-              p={10}
+              p={{ base: 6, md: 8, lg: 10 }}
               borderRadius="xl"
               border="1px solid"
               borderColor="gray.100"
               boxShadow="sm"
             >
-              <Text fontSize="lg" color="gray.700" lineHeight="tall" textAlign="justify">
+              <Text fontSize={{ base: 'md', md: 'lg' }} color="gray.700" lineHeight="tall" textAlign={{ base: 'left', md: 'justify' }}>
                 {personalInfo.about}
               </Text>
             </Box>
           </MotionBox>
 
           {/* Stats Grid */}
-          <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
+          <SimpleGrid columns={{ base: 1, sm: 2, lg: 3 }} spacing={{ base: 4, md: 6 }}>
             {personalInfo.stats.map((stat, index) => (
               <StatCard
                 key={index}

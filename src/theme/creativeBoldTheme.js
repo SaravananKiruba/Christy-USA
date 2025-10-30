@@ -86,9 +86,12 @@ const creativeBoldTheme = extendTheme({
   },
   styles: {
     global: {
+      'html, body': {
+        scrollBehavior: 'smooth',
+      },
       body: {
         bg: 'linear-gradient(135deg, #FFF1F2 0%, #FAF5FF 50%, #F0FDFA 100%)',
-        color: 'gray.800',
+        color: 'gray.800 !important',
         lineHeight: 'tall',
       },
       '*::placeholder': {

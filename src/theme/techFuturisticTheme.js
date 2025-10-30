@@ -68,9 +68,12 @@ const techFuturisticTheme = extendTheme({
   },
   styles: {
     global: {
+      'html, body': {
+        scrollBehavior: 'smooth',
+      },
       body: {
         bg: '#0A0A0F',
-        color: 'dark.text',
+        color: '#E4E4E7 !important',
         lineHeight: 'tall',
         backgroundImage: `
           radial-gradient(circle at 20% 50%, rgba(0, 229, 229, 0.05) 0%, transparent 50%),

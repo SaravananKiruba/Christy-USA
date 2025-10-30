@@ -55,9 +55,12 @@ const fonts = {
 
 const styles = {
   global: (props) => ({
+    'html, body': {
+      scrollBehavior: 'smooth',
+    },
     body: {
       bg: props.colorMode === 'dark' ? 'dark.bg' : 'gray.50',
-      color: props.colorMode === 'dark' ? 'dark.text' : 'gray.800',
+      color: props.colorMode === 'dark' ? 'dark.text !important' : 'gray.800 !important',
       fontFamily: 'body',
     },
     '*::placeholder': {
@@ -65,9 +68,6 @@ const styles = {
     },
     '*, *::before, &::after': {
       borderColor: props.colorMode === 'dark' ? 'dark.border' : 'gray.200',
-    },
-    html: {
-      scrollBehavior: 'smooth',
     },
   }),
 };

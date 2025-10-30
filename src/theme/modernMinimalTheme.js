@@ -80,9 +80,12 @@ const modernMinimalTheme = extendTheme({
   },
   styles: {
     global: {
+      'html, body': {
+        scrollBehavior: 'smooth',
+      },
       body: {
         bg: 'white',
-        color: 'gray.800',
+        color: 'gray.800 !important',
         lineHeight: 'tall',
       },
       '*::placeholder': {

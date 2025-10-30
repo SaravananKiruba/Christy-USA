@@ -9,6 +9,7 @@ import {
   HStack,
   Text,
   Badge,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { FaChevronDown, FaCheckCircle } from 'react-icons/fa';
@@ -19,6 +20,17 @@ const MotionBox = motion(Box);
 
 const TemplateSwitcher = () => {
   const { currentTemplate, switchTemplate } = useTemplate();
+  
+  // Responsive values
+  const buttonSize = useBreakpointValue({ base: 'sm', md: 'md', lg: 'lg' });
+  const position = useBreakpointValue({ 
+    base: { top: '10px', right: '10px' }, 
+    md: { top: '15px', right: '15px' },
+    lg: { top: '20px', right: '20px' }
+  });
+  const menuWidth = useBreakpointValue({ base: '220px', md: '250px', lg: '280px' });
+  const iconSize = useBreakpointValue({ base: 4, md: 4, lg: 5 });
+  const showText = useBreakpointValue({ base: false, sm: true });
 
   const templates = [
     {
@@ -49,8 +61,8 @@ const TemplateSwitcher = () => {
   return (
     <MotionBox
       position='fixed'
-      top='20px'
-      right='20px'
+      top={position.top}
+      right={position.right}
       zIndex={2000}
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -59,8 +71,8 @@ const TemplateSwitcher = () => {
       <Menu>
         <MenuButton
           as={Button}
-          rightIcon={<FaChevronDown />}
-          size='lg'
+          rightIcon={showText ? <FaChevronDown /> : undefined}
+          size={buttonSize}
           borderRadius='full'
           bgGradient={
             currentTemplate === TEMPLATES.CREATIVE_BOLD
@@ -77,18 +89,20 @@ const TemplateSwitcher = () => {
             transform: 'scale(0.98)',
           }}
           boxShadow='xl'
-          px={6}
+          px={{ base: 3, sm: 4, md: 5, lg: 6 }}
+          minW={{ base: 'auto', sm: 'auto' }}
         >
-          <HStack spacing={2}>
-            <Icon as={currentTemplateInfo.icon} boxSize={5} />
-            <Text fontWeight='bold'>{currentTemplateInfo.name}</Text>
+          <HStack spacing={{ base: 0, sm: 2 }}>
+            <Icon as={currentTemplateInfo.icon} boxSize={iconSize} />
+            {showText && <Text fontWeight='bold' fontSize={{ base: 'xs', md: 'sm', lg: 'md' }}>{currentTemplateInfo.name}</Text>}
           </HStack>
         </MenuButton>
         <MenuList
           borderRadius='xl'
           boxShadow='2xl'
           p={2}
-          minW='280px'
+          minW={menuWidth}
+          maxW={{ base: '90vw', md: 'auto' }}
           bg={currentTemplate === TEMPLATES.TECH_FUTURISTIC ? 'gray.800' : 'white'}
           borderColor={currentTemplate === TEMPLATES.TECH_FUTURISTIC ? 'cyan.400' : 'gray.200'}
         >
@@ -97,8 +111,8 @@ const TemplateSwitcher = () => {
               key={template.id}
               onClick={() => switchTemplate(template.id)}
               borderRadius='lg'
-              py={3}
-              px={4}
+              py={{ base: 2, md: 3 }}
+              px={{ base: 3, md: 4 }}
               mb={1}
               bg={
                 currentTemplate === template.id
@@ -109,16 +123,17 @@ const TemplateSwitcher = () => {
                 bg: template.color + '30',
               }}
             >
-              <HStack spacing={3} width='100%'>
+              <HStack spacing={{ base: 2, md: 3 }} width='100%'>
                 <Icon
                   as={template.icon}
-                  boxSize={6}
+                  boxSize={{ base: 5, md: 6 }}
                   color={template.color}
                 />
                 <Box flex={1}>
                   <HStack justify='space-between'>
                     <Text
                       fontWeight='600'
+                      fontSize={{ base: 'sm', md: 'md' }}
                       color={
                         currentTemplate === TEMPLATES.TECH_FUTURISTIC
                           ? 'white'
@@ -128,11 +143,11 @@ const TemplateSwitcher = () => {
                       {template.name}
                     </Text>
                     {currentTemplate === template.id && (
-                      <Icon as={FaCheckCircle} color={template.color} />
+                      <Icon as={FaCheckCircle} color={template.color} boxSize={{ base: 4, md: 5 }} />
                     )}
                   </HStack>
                   <Text
-                    fontSize='xs'
+                    fontSize={{ base: '2xs', md: 'xs' }}
                     color={
                       currentTemplate === TEMPLATES.TECH_FUTURISTIC
                         ? 'gray.400'

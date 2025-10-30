@@ -31,7 +31,7 @@ const ContactCard = ({ icon, title, value, link, delay }) => {
     >
       <Box
         bg="white"
-        p={6}
+        p={{ base: 4, md: 6 }}
         borderRadius="lg"
         boxShadow="md"
         textAlign="center"
@@ -41,23 +41,23 @@ const ContactCard = ({ icon, title, value, link, delay }) => {
         }}
         transition="all 0.3s ease"
       >
-        <VStack spacing={4}>
+        <VStack spacing={{ base: 3, md: 4 }}>
           <Box
-            width="60px"
-            height="60px"
+            width={{ base: '50px', md: '60px' }}
+            height={{ base: '50px', md: '60px' }}
             borderRadius="full"
             bgGradient="linear(to-br, brand.500, brand.600)"
             display="flex"
             alignItems="center"
             justifyContent="center"
           >
-            <Icon as={icon} boxSize={7} color="white" />
+            <Icon as={icon} boxSize={{ base: 6, md: 7 }} color="white" />
           </Box>
           <VStack spacing={1}>
-            <Text fontWeight="600" fontSize="sm" color="gray.600">
+            <Text fontWeight="600" fontSize={{ base: 'xs', md: 'sm' }} color="gray.600">
               {title}
             </Text>
-            <Text fontWeight="700" fontSize="md" color="gray.800">
+            <Text fontWeight="700" fontSize={{ base: 'sm', md: 'md' }} color="gray.800">
               {value}
             </Text>
           </VStack>
@@ -84,8 +84,8 @@ const ContactModern = () => {
   });
 
   return (
-    <Box bg="gray.50" py={20} id="contact">
-      <Container maxW="container.xl">
+    <Box bg="gray.50" py={{ base: 12, md: 16, lg: 20 }} id="contact">
+      <Container maxW="container.xl" px={{ base: 4, md: 6, lg: 8 }}>
         <MotionBox
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
@@ -96,19 +96,19 @@ const ContactModern = () => {
         >
           <Heading
             as="h2"
-            size="2xl"
+            fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }}
             mb={4}
             bgGradient="linear(to-r, brand.500, brand.600)"
             bgClip="text"
           >
             Get In Touch
           </Heading>
-          <Text fontSize="lg" color="gray.600" maxW="2xl" mx="auto">
+          <Text fontSize={{ base: 'md', md: 'lg' }} color="gray.600" maxW="2xl" mx="auto">
             Let's connect and discuss how we can collaborate on innovative AI solutions
           </Text>
         </MotionBox>
 
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6} mb={12}>
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={{ base: 4, md: 6 }} mb={12}>
           <ContactCard
             icon={FaEnvelope}
             title="Email"
